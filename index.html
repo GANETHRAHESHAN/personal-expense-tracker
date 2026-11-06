@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0d0b16">
+  <title>Personal Expense Tracker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="container">
+    <header>
+      <div>
+        <h1>Financial DashBoard</h1>
+        <p>Understand your money. Build better habits.</p>
+      </div>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        ☀️ Light Mode
+      </button>
+    </header>
+
+    <section class="summary" aria-label="Financial summary">
+      <div class="card">
+        <div class="label">Total Balance</div>
+        <div class="amount balance" id="balance">LKR 0.00</div>
+      </div>
+      <div class="card">
+        <div class="label">Total Income</div>
+        <div class="amount income" id="totalIncome">LKR 0.00</div>
+      </div>
+      <div class="card">
+        <div class="label">Total Expenses</div>
+        <div class="amount expense" id="totalExpenses">LKR 0.00</div>
+      </div>
+    </section>
+
+    <div class="main-grid">
+      <section class="panel">
+        <h2 id="formTitle">Add a Transaction</h2>
+        <form id="transactionForm">
+          <div class="field">
+            <label for="date">Date</label>
+            <input type="date" id="date" required>
+          </div>
+          <div class="field">
+            <label for="description">Description</label>
+            <input type="text" id="description" maxlength="100" placeholder="e.g. Lunch or monthly salary" required>
+          </div>
+          <div class="field">
+            <label for="type">Transaction Type</label>
+            <select id="type" required>
+              <option value="expense">Expense</option>
+              <option value="income">Income</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="category">Category</label>
+            <select id="category" required></select>
+          </div>
+          <div class="field">
+            <label for="amount">Amount (LKR)</label>
+            <input type="number" id="amount" min="0.01" step="0.01" placeholder="0.00" required>
+          </div>
+          <div class="buttons">
+            <button type="submit" class="primary" id="saveButton">Save Transaction</button>
+            <button type="button" class="secondary" id="clearButton">Clear</button>
+          </div>
+          <p id="message" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <section class="panel">
+        <div class="table-top">
+          <h2>Transaction History</h2>
+          <select id="filter" aria-label="Filter transactions">
+            <option value="all">All Transactions</option>
+            <option value="income">Income Only</option>
+            <option value="expense">Expenses Only</option>
+          </select>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Date</th><th>Description</th><th>Type</th><th>Category</th><th>Amount</th><th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="transactionList"></tbody>
+          </table>
+          <p id="emptyMessage" class="empty">No transactions yet. Add your first transaction.</p>
+        </div>
+        <p class="note">Your transactions and theme preference are saved in this browser using localStorage. Export backups regularly if you need to keep your data safe.</p>
+      </section>
+    </div>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,398 @@
+:root {
+    color-scheme: dark;
+    --bg: #0d0b16;
+    --panel: #171323;
+    --panel-light: #211a32;
+    --input-bg: #100d1b;
+    --border: #332844;
+    --purple: #9b72f2;
+    --purple-hover: #8154df;
+    --text: #f5f1ff;
+    --muted: #aaa0bd;
+    --green: #46d6a0;
+    --red: #ff7089;
+    --income-bg: #12372d;
+    --expense-bg: #401e2b;
+    --button-secondary: #211a32;
+    --button-secondary-hover: #302441;
+    --delete-bg: #48202d;
+    --edit-bg: #302449;
+    --shadow: 0 10px 30px rgba(0, 0, 0, .12);
+}
+
+body.light-mode {
+    color-scheme: light;
+    --bg: #f4f1fa;
+    --panel: #ffffff;
+    --panel-light: #f0eafa;
+    --input-bg: #faf8fd;
+    --border: #ded6eb;
+    --purple: #7545d6;
+    --purple-hover: #6033bd;
+    --text: #211a32;
+    --muted: #716982;
+    --green: #087d55;
+    --red: #c93655;
+    --income-bg: #ddf6eb;
+    --expense-bg: #ffe5eb;
+    --button-secondary: #f0eafa;
+    --button-secondary-hover: #e5dcf2;
+    --delete-bg: #ffe5eb;
+    --edit-bg: #eee5ff;
+    --shadow: 0 10px 30px rgba(49, 31, 76, .07);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--bg);
+    color: var(--text);
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.5;
+    transition: background .2s ease, color .2s ease;
+}
+
+button,
+input,
+select {
+    font: inherit;
+}
+
+.container {
+    width: min(1100px, 92%);
+    margin: 0 auto;
+    padding: 32px 0 48px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 26px;
+}
+
+header h1 {
+    margin: 0 0 6px;
+    font-size: clamp(1.7rem, 4vw, 2.4rem);
+}
+
+header p {
+    margin: 0;
+    color: var(--muted);
+}
+
+.theme-toggle {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--panel);
+    color: var(--text);
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.theme-toggle:hover {
+    background: var(--panel-light);
+}
+
+.summary {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.card,
+.panel {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    transition: background .2s ease, border-color .2s ease;
+}
+
+.card {
+    padding: 20px;
+}
+
+.card .label {
+    color: var(--muted);
+    font-size: .92rem;
+}
+
+.card .amount {
+    margin-top: 8px;
+    font-size: clamp(1.25rem, 3vw, 1.8rem);
+    font-weight: 700;
+    overflow-wrap: anywhere;
+}
+
+.income {
+    color: var(--green);
+}
+
+.expense {
+    color: var(--red);
+}
+
+.balance {
+    color: var(--purple);
+}
+
+.main-grid {
+    display: grid;
+    grid-template-columns: minmax(260px, 340px) minmax(0, 1fr);
+    gap: 20px;
+    align-items: start;
+}
+
+.panel {
+    padding: 20px;
+}
+
+h2 {
+    font-size: 1.15rem;
+    margin: 0 0 16px;
+}
+
+.field {
+    margin-bottom: 14px;
+}
+
+label {
+    display: block;
+    color: var(--muted);
+    font-size: .9rem;
+    margin-bottom: 6px;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 11px 12px;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    background: var(--input-bg);
+    color: var(--text);
+}
+
+input:focus,
+select:focus,
+button:focus-visible {
+    outline: 2px solid var(--purple);
+    outline-offset: 2px;
+}
+
+.buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+button {
+    border: 0;
+    border-radius: 9px;
+    padding: 10px 14px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background .15s ease, transform .15s ease;
+}
+
+button:active {
+    transform: translateY(1px);
+}
+
+.primary {
+    background: var(--purple);
+    color: white;
+    flex: 1;
+}
+
+.primary:hover {
+    background: var(--purple-hover);
+}
+
+.secondary {
+    background: var(--button-secondary);
+    color: var(--text);
+    border: 1px solid var(--border);
+}
+
+.secondary:hover {
+    background: var(--button-secondary-hover);
+}
+
+.table-top {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+}
+
+.table-top h2 {
+    margin: 0;
+}
+
+.table-top select {
+    width: auto;
+    min-width: 170px;
+}
+
+.table-wrap {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 650px;
+}
+
+th,
+td {
+    text-align: left;
+    padding: 12px 10px;
+    border-bottom: 1px solid var(--border);
+    font-size: .9rem;
+}
+
+th {
+    color: var(--muted);
+    font-weight: 600;
+}
+
+td.amount-cell {
+    white-space: nowrap;
+    font-weight: 700;
+}
+
+.badge {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 20px;
+    font-size: .78rem;
+}
+
+.badge.income {
+    background: var(--income-bg);
+}
+
+.badge.expense {
+    background: var(--expense-bg);
+}
+
+.actions {
+    display: flex;
+    gap: 6px;
+}
+
+.actions button {
+    padding: 6px 9px;
+    font-size: .8rem;
+}
+
+.delete {
+    background: var(--delete-bg);
+    color: var(--red);
+}
+
+.edit {
+    background: var(--edit-bg);
+    color: var(--purple);
+}
+
+.empty {
+    color: var(--muted);
+    text-align: center;
+    padding: 28px 10px;
+}
+
+.note {
+    margin-top: 16px;
+    color: var(--muted);
+    font-size: .85rem;
+}
+
+#message {
+    min-height: 1.3em;
+    margin: 10px 0 0;
+    font-size: .9rem;
+    color: var(--red);
+}
+
+@media (max-width: 800px) {
+    .main-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .summary {
+        gap: 10px;
+    }
+
+    .card {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 520px) {
+    .container {
+        padding-top: 22px;
+    }
+
+    header {
+        align-items: flex-start;
+    }
+
+    .theme-toggle {
+        padding: 9px 10px;
+        font-size: .85rem;
+    }
+
+    .summary {
+        grid-template-columns: 1fr;
+    }
+
+    .card {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .card .amount {
+        margin: 0;
+        text-align: right;
+    }
+
+    .panel {
+        padding: 16px;
+    }
+
+    .table-top {
+        align-items: stretch;
+    }
+
+    .table-top select {
+        width: 100%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        transition-duration: .01ms !important;
+    }
+}
